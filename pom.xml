@@ -95,13 +95,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url>http://52.91.92.176:8081/ayonexus/repository/Tesla-releases/</url>
+	      <url>http://34.204.9.114:8081/ayonexus/repository/Tesla-releases/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url>http://52.91.92.176:8081/ayonexus/repository/Tesla-snapshots/</url>
+	      <url>http://34.204.9.114:8081/ayonexus/repository/Tesla-snapshots/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
