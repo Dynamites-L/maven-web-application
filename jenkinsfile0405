@@ -1,5 +1,5 @@
 node{
-    def mavenHome = tool name: 'maven3.9.1'
+    def mavenHome = tool name: 'maven'
  stage('1.CodeClone'){
 git credentialsId: '641a4cf5-45e9-4657-861b-3a562e18a85f', url: 'https://github.com/Dynamites-L/maven-web-application'
    }
