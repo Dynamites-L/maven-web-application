@@ -1,0 +1,30 @@
+node{
+    def mavenHome = tool name: 'maven3.9.1'
+ stage('1.CodeClone'){
+git credentialsId: '641a4cf5-45e9-4657-861b-3a562e18a85f', url: 'https://github.com/Dynamites-L/maven-web-application'
+   }
+   stage('2MavenBuild'){
+   sh "${mavenHome}/bin/mvn package"
+}
+ stage('3codeQuality'){
+   sh "${mavenHome}/bin/mvn sonar:sonar"
+}
+stage('4UploadArtifacts'){
+   sh "${mavenHome}/bin/mvn deploy"
+}
+stage('5deploy2UAT'){
+deploy adapters: [tomcat9(credentialsId: 'TOMMY', path: '', url: 'http://100.24.74.203:8080')], contextPath: null, war: 'target/*war'
+}
+stage('6Manualapproval'){
+    sh "echo 'ready for review' "
+    timeout(time:5, unit:'HOURS') {
+    input message: 'Application ready for deployment, Please review and approve'
+}
+}
+stage('7deploy2Prod'){
+   deploy adapters: [tomcat9(credentialsId: 'TOMMY', path: '', url: 'http://100.24.74.203:8080')], contextPath: null, war: 'target/*war'
+}
+stage('8emailNotify'){
+emailext body: 'Build is done.So cool.Thank God!', recipientProviders: [buildUser()], subject: 'Hello Team', to: 'ayomidenavyfed@gmail.com'
+}
+}
